@@ -1,1 +1,1 @@
-# pilot
+Pilot | A simple web app for pilots
