@@ -4,10 +4,10 @@ var defaultEnvConfig = require('./default');
 
 module.exports = {
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://meanapp:meanapp@ds027749.mongolab.com:27749/cen3031-fall-test/mean-dev',
+    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://<dbuser>:<dbpassword>@ds023560.mlab.com:23560/pilot',
     options: {
-      user: '',
-      pass: ''
+      user: 'pilotuser',
+      pass: 'flyhigh'
     },
     // Enable mongoose debug mode
     debug: process.env.MONGODB_DEBUG || false
