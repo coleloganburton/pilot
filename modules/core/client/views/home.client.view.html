@@ -2,11 +2,30 @@
   <div class="container-fluid">
 	<div class="row">
     <br>
+    <!--
+    <div ng-repeat="post in posts | orderBy: 'upvotes'">
+      <span ng-click="incrementUpvotes(post)">^</span>
+      <a href="{{post.link}}" ng-show="post.link">
+        {{post.title}}
+      </a>
+      <span ng-hide="post.link">
+      {{post.title}}
+      </span>
+        - upvotes: {{post.upvotes}}
+    </div>
+    <form ng-submit="addPost()">
+      <input type="text" placeholder="Title" ng-model="title"></input>
+      <input type="text" placeholder="Link" ng-model="link"></input>
+  <button type="submit">Post</button>
+</form>
+-->
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-4">
 					<div class="thumbnail">
-                <span class="glyphicon glyphicon-list-alt" style="font-size:5em;" aria-hidden="true"></span>
+            <button type="button" ui-sref="fltplan" class="btn btn-default">
+                <span class="glyphicon glyphicon-plane" style="font-size:5em; align:center;" aria-hidden="true"></span>
+              </button>
 						<div class="caption">
 							<h3>
 								FLT PLAN
@@ -14,21 +33,14 @@
 							<p>
 								Enter your you place of Origin and Destination, gather all airport and weather information.
 							</p>
-							<p>
-								<a class="btn btn-primary" href="#">Plan</a>
-							</p>
 						</div>
-							<div class="_e725ae-textarea_btn _e725ae-not_focused">
-								<div class="_e725ae-transform_wrap">
-									<div class="_e725ae-status">
-									</div>
-								</div>
-							</div>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="thumbnail">
+            <button type="button" ui-sref="fltplan" class="btn btn-default">
             <span class="glyphicon glyphicon-book" style="font-size:5em;" aria-hidden="true"></span>
+          </button>
 						<div class="caption">
 							<h3>
 								LOGBOOK
@@ -36,21 +48,14 @@
 							<p>
 								Log your hours, experience, and memeories. Convieniently downloadable to .xlsx format
 							</p>
-							<p>
-								<a class="btn btn-primary" href="#">Log</a>
-							</p>
 						</div>
-							<div class="_e725ae-textarea_btn _e725ae-not_focused">
-								<div class="_e725ae-transform_wrap">
-									<div class="_e725ae-status">
-									</div>
-								</div>
-							</div>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="thumbnail">
-            <span class="glyphicon glyphicon-map-marker" style="font-size:5em;" aria-hidden="true"></span>
+            <button type="button" ui-sref="fltplan" class="btn btn-default">
+              <span class="glyphicon glyphicon-map-marker" style="font-size:5em;" aria-hidden="true"></span>
+            </button>
 						<div class="caption">
 							<h3>
 							  MAPS
@@ -58,20 +63,10 @@
 							<p>
 								Find where you are, where you're going, and what's on the way.
 							</p>
-							<p>
-								<a class="btn btn-primary" href="#">Map</a>
-              </p>
-						</div>
-							<div class="_e725ae-textarea_btn _e725ae-not_focused">
-								<div class="_e725ae-transform_wrap">
-									<div class="_e725ae-status">
-									</div>
-								</div>
-							</div>
 					</div>
 				</div>
 			</div>
-			<div class="jumbotron">
+			<div class="jumbotron" id="jumbo">
 				<h2>
 					Welcome, Aviators
 				</h2>
@@ -82,12 +77,6 @@
 					<a class="btn btn-primary btn-large" href="#">Learn more</a>
 				</p>
 			</div>
-				<div class="_e725ae-textarea_btn _e725ae-not_focused">
-					<div class="_e725ae-transform_wrap">
-						<div class="_e725ae-status">
-						</div>
-					</div>
-				</div>
 		</div>
 	</div>
 </div>

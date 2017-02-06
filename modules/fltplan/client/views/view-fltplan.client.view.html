@@ -1,0 +1,22 @@
+<section ng-controller="fltplansController" ng-init="findOne()">
+  <div class="page-header">
+    <h1 ng-bind="fltplan.title"></h1>
+  </div>
+  <div class="pull-right" ng-show="authentication.user._id == fltplan.user._id">
+    <a class="btn btn-primary" ui-sref="fltplans.edit({fltplanId: fltplan._id})">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="remove();">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="fltplan.created | date:'mediumDate'"></span>
+      by
+      <span ng-bind="fltplan.user.displayName"></span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="fltplan.content"></p>
+</section>
