@@ -6,7 +6,8 @@ angular.module('fltplans').run(['Menus',
     // Add the fltplans dropdown item
     Menus.addMenuItem('topbar', {
       title: 'Flight Plan',
-      state: 'fltplan'
+      state: 'fltplan',
+      position: 1
     });
     /*
     // Add the dropdown list item

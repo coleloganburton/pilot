@@ -1,0 +1,20 @@
+<section ng-controller="LogbookController" ng-init="find()">
+  <div class="page-header">
+    <h1>Logbook</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="logbook in logbook" ui-sref="logbook.view({logbookId: logbook._id})" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="logbook.created | date:'mediumDate'"></span>
+        by
+        <span ng-bind="logbook.user.displayName"></span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="logbook.title"></h4>
+      <p class="list-group-item-text" ng-bind="logbook.content"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="logbook.$resolved && !logbook.length">
+    No logbook yet, why don't you <a ui-sref="logbook.create">create one</a>?
+  </div>
+</section>
