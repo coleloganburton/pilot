@@ -30,7 +30,11 @@ exports.create = function (req, res) {
  * Show the current logbook
  */
 exports.read = function (req, res) {
+  var logbook = req.logbook;
+  
+  if (logbook.user == req.user){
   res.json(req.logbook);
+  }
 };
 
 /**
