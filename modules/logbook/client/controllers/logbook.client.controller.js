@@ -69,7 +69,6 @@ angular.module('logbook').controller('LogbookController', ['$scope', '$statePara
       });
     };
 
-  //  $scope.user == Authentication.user;
     // Find a list of Logbook
     $scope.find = function () {
       $scope.logbook = Logbook.query();
