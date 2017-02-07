@@ -79,8 +79,15 @@ exports.list = function (req, res) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
+    } else if (Logbook.user == req.user){
       res.json(logbook);
+    }
+    else
+    {
+      console.log('oops');
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
     }
   });
 };
