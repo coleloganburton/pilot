@@ -8,7 +8,6 @@ angular.module('logbook').run(['Menus',
       title: 'Logbook',
       state: 'logbook.list',
       type: 'item',
-      roles: ['*'],
       position: 2
     });
 
