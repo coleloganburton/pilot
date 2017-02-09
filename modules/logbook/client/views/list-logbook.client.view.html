@@ -14,7 +14,7 @@
       <p class="list-group-item-text" ng-bind="logbook.content"></p>
     </a>
   </div>
-  <div class="alert alert-warning text-center" ng-if="logbook.$resolved && !logbook.length">
-    No logbook yet, why don't you <a ui-sref="logbook.create">create one</a>?
+  <div>
+    <button class="btn btn-primary" ui-sref="logbook.create">Log a Flight</button>
   </div>
 </section>
