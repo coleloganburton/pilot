@@ -10,19 +10,104 @@ var mongoose = require('mongoose'),
  * Logbook Schema
  */
 var LogbookSchema = new Schema({
-  created: {
-    type: Date,
-    default: Date.now
+  date: {
+    type: Date
   },
-  title: {
+  aircraftType: {
     type: String,
     default: '',
     trim: true,
-    required: 'Title cannot be blank'
+    required: 'Aircraft type cannot be blank'
   },
-  content: {
+  aircraftID: {
     type: String,
     default: '',
+    trim: true,
+    required: 'Aircraft ID cannot be blank'
+  },
+  from: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  to: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  numberInstApp: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  remarks: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  takeoffs: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  landings: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  sel: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  mel: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  night: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  actualInstrument: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  simInstrument: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  flightSimulator: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  crossCountry: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  solo: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  dualReceived: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  pic: {
+    type: Number,
+    default: 0,
+    trim: true
+  },
+  totalTime: {
+    type: Number,
+    default: 0,
     trim: true
   },
   user: {
