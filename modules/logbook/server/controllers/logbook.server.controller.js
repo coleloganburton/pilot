@@ -32,7 +32,6 @@ exports.create = function (req, res) {
  */
 exports.read = function (req, res) {
   if (req.logbook && req.user && req.logbook.user.id === req.user.id){
-    console.log('READ LOG');
     res.json(req.logbook);
   }
 };
@@ -79,7 +78,7 @@ exports.delete = function (req, res) {
  */
 exports.list = function (req, res) {
   var userI = req.user.id; //grab User ID, use .find with param to only grab logs from that user
-  Logbook.find({user: {_id: userI}}).sort('-created').populate('user', 'displayName').exec(function (err, logbook) {
+  Logbook.find({ user: { _id: userI } }).sort('-created').populate('user', 'displayName').exec(function (err, logbook) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
