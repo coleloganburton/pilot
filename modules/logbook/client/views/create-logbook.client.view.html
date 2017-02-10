@@ -1,28 +1,293 @@
 <section ng-controller="LogbookController">
   <div class="page-header">
-    <h1>New Logbook</h1>
+    <h1>New Flight Log</h1>
   </div>
-  <div class="col-md-12">
-    <form name="logbookForm" class="form-horizontal" ng-submit="create(logbookForm.$valid)" novalidate>
-      <fieldset>
-        <div class="form-group" show-errors>
-          <label for="title">Title</label>
-          <input name="title" type="text" ng-model="title" id="title" class="form-control" placeholder="Title" required>
-          <div ng-messages="logbookForm.title.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Logbook title is required.</p>
+  <div class="container-fluid">
+    <div class="jumbotron" id="jumbo">
+      <form name="logbookForm" class="form-horizontal" ng-submit="create(logbookForm.$valid)" novalidate>
+        <fieldset>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Date</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2>Aircraft✈</h2>
+                    <br>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Aircraft Type</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Aircraft Identifier</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-7">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2>Route of Flight</h2>
+                    <br>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">From</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">To</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group" show-errors>
+                      <label for="date">Route</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Number of Instrument Approaches</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group" show-errors>
+                      <label for="date">Remarks and Endorsements</label>
+                      <textarea rows="3" cols="50" name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+            </textarea>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-1">
+                    <div class="form-group" show-errors>
+                      <label for="date">Takeoffs</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group" show-errors>
+                      <label for="date">Landings</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2>Hours</h2>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Single Engine</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Multi Engine</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-7">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Night</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Actual Instrument</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Simulated Instrument</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Flight Simulator</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Cross Country</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Solo</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Dual Received</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Pilot in Command</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Total Duration of Flight</label>
+                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="content">Content</label>
-          <textarea name="content" ng-model="content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
-        </div>
-        <div class="form-group">
-          <input type="submit" class="btn btn-default">
-        </div>
-        <div ng-show="error" class="text-danger">
-          <strong ng-bind="error"></strong>
-        </div>
-      </fieldset>
-    </form>
-  </div>
+          <div class="col-md-12">
+            <br>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Save Flight ✈">
+              <div ng-show="error" class="text-danger">
+                <strong ng-bind="error"></strong>
+              </div>
+        </fieldset>
+      </form>
+      </div>
+      </div>
 </section>
