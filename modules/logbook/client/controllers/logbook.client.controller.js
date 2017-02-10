@@ -17,8 +17,27 @@ angular.module('logbook').controller('LogbookController', ['$scope', '$statePara
 
       // Create new logbook object
       var logbook = new Logbook({
-        title: this.title,
-        content: this.content
+        date: this.date,
+        aircraftType: this.aircraftType.toUpperCase(),
+        aircraftID: this.aircraftID.toUpperCase(),
+        from: this.from.toUpperCase(),
+        to: this.to.toUpperCase(),
+        route: this.route.toUpperCase(),
+        numberInstApp: this.numberInstApp,
+        remarks: this.remarks,
+        takeoffs: this.takeoffs,
+        landings: this.landings,
+        sel: this.sel,
+        mel: this.mel,
+        night: this.night,
+        actualInstrument: this.actualInstrument,
+        simInstrument: this.simInstrument,
+        flightSimulator: this.flightSimulator,
+        crossCountry: this.crossCountry,
+        solo: this.solo,
+        dualReceived: this.dualReceived,
+        pic: this.pic,
+        totalTime: this.totalTime
       });
 
       // Redirect after save
@@ -26,8 +45,27 @@ angular.module('logbook').controller('LogbookController', ['$scope', '$statePara
         $location.path('logbook/' + response._id);
 
         // Clear form fields
-        $scope.title = '';
-        $scope.content = '';
+        $scope.date = '';
+        $scope.aircraftType = '';
+        $scope.aircraftID = '';
+        $scope.from = '';
+        $scope.to = '';
+        $scope.route = '';
+        $scope.numberInstApp = '';
+        $scope.remarks = '';
+        $scope.takeoffs = '';
+        $scope.landings = '';
+        $scope.sel = '';
+        $scope.mel = '';
+        $scope.night = '';
+        $scope.actualInstrument = '';
+        $scope.simInstrument = '';
+        $scope.flightSimulator = '';
+        $scope.crossCountry = '';
+        $scope.solo = '';
+        $scope.dualReceived = '';
+        $scope.pic = '';
+        $scope.totalTime = '';
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });

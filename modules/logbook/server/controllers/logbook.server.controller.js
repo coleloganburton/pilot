@@ -42,8 +42,27 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var logbook = req.logbook;
 
-  logbook.title = req.body.title;
-  logbook.content = req.body.content;
+  logbook.date = req.body.date;
+  logbook.aircraftType = req.body.aircraftType;
+  logbook.aircraftID = req.body.aircraftID;
+  logbook.from = req.body.from;
+  logbook.to = req.body.to;
+  logbook.route = req.body.route;
+  logbook.numberInstApp = req.body.numberInstApp;
+  logbook.remarks = req.body.remarks;
+  logbook.takeoffs = req.body.takeoffs;
+  logbook.landings = req.body.landings;
+  logbook.sel = req.body.sel;
+  logbook.mel = req.body.mel;
+  logbook.night = req.body.night;
+  logbook.actualInstrument = req.body.actualInstrument;
+  logbook.simInstrument = req.body.simInstrument;
+  logbook.flightSimulator = req.body.flightSimulator;
+  logbook.crossCountry = req.body.crossCountry;
+  logbook.solo = req.body.solo;
+  logbook.dualReceived = req.body.dualReceived;
+  logbook.pic = req.body.pic;
+  logbook.totalTime = req.body.totalTime;
 
   logbook.save(function (err) {
     if (err) {

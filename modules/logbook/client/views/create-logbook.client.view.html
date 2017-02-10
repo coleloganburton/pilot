@@ -1,6 +1,6 @@
 <section ng-controller="LogbookController">
   <div class="page-header">
-    <h1>New Flight Log</h1>
+    <h1>New Flight Log ✈</h1>
   </div>
   <div class="container-fluid">
     <div class="jumbotron" id="jumbo">
@@ -13,9 +13,9 @@
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
                       <label for="date">Date</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <input name="date" type="date" ng-model="date" id="date" class="form-control" placeholder="" required>
                       <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                        <p class="help-block error-text" ng-message="required">Date is required.</p>
                       </div>
                     </div>
                   </div>
@@ -24,17 +24,17 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <h2>Aircraft✈</h2>
+                    <h2>Aircraft</h2>
                     <br>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Aircraft Type</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      <label for="aircraftType">Aircraft Type</label>
+                      <input name="aircraftType" type="text" style="text-transform:uppercase" ng-model="aircraftType" id="aircraftType" class="form-control" placeholder="Type" required>
+                      <div ng-messages="logbookForm.aircraftType.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Aircraft Type is required.</p>
                       </div>
                     </div>
                   </div>
@@ -42,10 +42,10 @@
                   </div>
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Aircraft Identifier</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      <label for="aircraftID">Aircraft Identifier</label>
+                      <input name="aircraftID" type="text" style="text-transform:uppercase" ng-model="aircraftID" id="aircraftID" class="form-control" placeholder="Identifier" required>
+                      <div ng-messages="logbookForm.aircraftID.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Aircraft ID is required.</p>
                       </div>
                     </div>
                   </div>
@@ -61,10 +61,10 @@
                 <div class="row">
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">From</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      <label for="from">From</label>
+                      <input name="from" type="text" ng-model="from" style="text-transform:uppercase" id="from" class="form-control" placeholder="From" required>
+                      <div ng-messages="logbookForm.from.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Source is required.</p>
                       </div>
                     </div>
                   </div>
@@ -72,10 +72,10 @@
                   </div>
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">To</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
+                      <label for="to">To</label>
+                      <input name="to" type="text" ng-model="to" id="to" style="text-transform:uppercase" class="form-control" placeholder="To" required>
+                      <div ng-messages="logbookForm.to.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Destination to is required.</p>
                       </div>
                     </div>
                   </div>
@@ -83,22 +83,16 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group" show-errors>
-                      <label for="date">Route</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="route">Route</label>
+                      <input name="route" type="text" ng-model="route" style="text-transform:uppercase" id="route" class="form-control" placeholder="Via">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Number of Instrument Approaches</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="numberInstApp">Number of Instrument Approaches</label>
+                      <input name="numberInstApp" type="text" ng-model="numberInstApp" id="numberInstApp" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-10">
@@ -107,34 +101,25 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group" show-errors>
-                      <label for="date">Remarks and Endorsements</label>
-                      <textarea rows="3" cols="50" name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
+                      <label for="remarks">Remarks and Endorsements</label>
+                      <textarea rows="3" cols="50" name="remarks" type="text" ng-model="remarks" id="remarks" class="form-control">
             </textarea>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-1">
                     <div class="form-group" show-errors>
-                      <label for="date">Takeoffs</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="takeoffs">Takeoffs</label>
+                      <input name="takeoffs" type="text" ng-model="takeoffs" id="takeoffs" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-1">
                   </div>
                   <div class="col-md-1">
                     <div class="form-group" show-errors>
-                      <label for="date">Landings</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="landings">Landings</label>
+                      <input name="landings" type="text" ng-model="landings" id="landings" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-9">
@@ -148,22 +133,16 @@
                 <div class="row">
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Single Engine</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="sel">Single Engine</label>
+                      <input name="sel" type="text" ng-model="sel" id="sel" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-1">
                   </div>
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Multi Engine</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="mel">Multi Engine</label>
+                      <input name="mel" type="text" ng-model="mel" id="mel" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-7">
@@ -172,33 +151,24 @@
                 <div class="row">
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Night</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="night">Night</label>
+                      <input name="night" type="text" ng-model="night" id="night" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-1">
                   </div>
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Actual Instrument</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="actualInstrument">Actual Instrument</label>
+                      <input name="actua" type="text" ng-model="actualInstrument" id="actualInstrument" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-1">
                   </div>
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Simulated Instrument</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="simInstrument">Simulated Instrument</label>
+                      <input name="simInstrument" type="text" ng-model="simInstrument" id="simInstrument" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-5">
@@ -207,11 +177,8 @@
                 <div class="row">
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Flight Simulator</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="flightSimulator">Flight Simulator</label>
+                      <input name="flightSimulator" type="text" ng-model="flightSimulator" id="flightSimulator" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-10">
@@ -220,44 +187,32 @@
                 <div class="row">
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Cross Country</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="crossCountry">Cross Country</label>
+                      <input name="crossCountry" type="text" ng-model="crossCountry" id="crossCountry" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-1">
                   </div>
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Solo</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="solo">Solo</label>
+                      <input name="solo" type="text" ng-model="solo" id="solo" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-1">
                   </div>
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Dual Received</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="dualReceived">Dual Received</label>
+                      <input name="dualReceived" type="text" ng-model="dualReceived" id="dualReceived" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-1">
                   </div>
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Pilot in Command</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="pic">Pilot in Command</label>
+                      <input name="pic" type="text" ng-model="pic" id="pic" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-1">
@@ -266,11 +221,8 @@
                 <div class="row">
                   <div class="col-md-2">
                     <div class="form-group" show-errors>
-                      <label for="date">Total Duration of Flight</label>
-                      <input name="date" type="text" ng-model="date" id="date" class="form-control" placeholder="Date" required>
-                      <div ng-messages="logbookForm.date.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Logbook date is required.</p>
-                      </div>
+                      <label for="totalTime">Total Duration of Flight</label>
+                      <input name="totalTime" type="text" ng-model="totalTime" id="totalTime" class="form-control">
                     </div>
                   </div>
                   <div class="col-md-10">

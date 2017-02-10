@@ -1,28 +1,243 @@
 <section ng-controller="LogbookController" ng-init="findOne()">
   <div class="page-header">
-    <h1>Edit Log</h1>
+    <h1>Edit Flight Log ✈</h1>
   </div>
   <div class="col-md-12">
     <div class="jumbotron" id="jumbo">
       <form name="logbookForm" class="form-horizontal" ng-submit="update(logbookForm.$valid)" novalidate>
         <fieldset>
-          <div class="form-group" show-errors>
-            <label for="title">Title</label>
-            <input name="title" type="text" ng-model="logbook.title" id="title" class="form-control" placeholder="Title" required>
-            <div ng-messages="logbookForm.title.$error" role="alert">
-              <p class="help-block error-text" ng-message="required">Logbook title is required.</p>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="date">Date</label>
+                      <input name="date" type="text" ng-model="logbook.date" id="date" class="form-control" value="logbook.date" placeholder="logbook.date" required>
+                      <div ng-messages="logbookForm.date.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Date is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2>Aircraft✈</h2>
+                    <br>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="aircraftType">Aircraft Type</label>
+                      <input name="aircraftType" type="text" style="text-transform:uppercase" ng-model="logbook.aircraftType" id="aircraftType" class="form-control" placeholder="Type" required>
+                      <div ng-messages="logbookForm.aircraftType.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Aircraft Type is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="aircraftID">Aircraft Identifier</label>
+                      <input name="aircraftID" type="text" style="text-transform:uppercase" ng-model="logbook.aircraftID" id="aircraftID" class="form-control" placeholder="Identifier" required>
+                      <div ng-messages="logbookForm.aircraftID.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Aircraft ID is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-7">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2>Route of Flight</h2>
+                    <br>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="from">From</label>
+                      <input name="from" type="text" style="text-transform:uppercase" ng-model="logbook.from" id="from" class="form-control" placeholder="From" required>
+                      <div ng-messages="logbookForm.from.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Source is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="to">To</label>
+                      <input name="to" type="text" ng-model="logbook.to" style="text-transform:uppercase" id="to" class="form-control" placeholder="To" required>
+                      <div ng-messages="logbookForm.to.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Destination is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group" show-errors>
+                      <label for="route">Route</label>
+                      <input name="route" type="text" ng-model="logbook.route" style="text-transform:uppercase" id="route" class="form-control" placeholder="Via">
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="numberInstApp">Number of Instrument Approaches</label>
+                      <input name="numberInstApp" type="text" ng-model="logbook.numberInstApp" id="numberInstApp" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group" show-errors>
+                      <label for="remarks">Remarks and Endorsements</label>
+                      <textarea rows="3" cols="50" name="remarks" type="text" ng-model="logbook.remarks" id="remarks" class="form-control">
+            </textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-1">
+                    <div class="form-group" show-errors>
+                      <label for="takeoffs">Takeoffs</label>
+                      <input name="takeoffs" type="text" ng-model="logbook.takeoffs" id="takeoffs" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group" show-errors>
+                      <label for="landings">Landings</label>
+                      <input name="landings" type="text" ng-model="logbook.landings" id="landings" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2>Hours</h2>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="sel">Single Engine</label>
+                      <input name="sel" type="text" ng-model="logbook.sel" id="sel" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="mel">Multi Engine</label>
+                      <input name="mel" type="text" ng-model="logbook.mel" id="mel" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-7">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="night">Night</label>
+                      <input name="night" type="text" ng-model="logbook.night" id="night" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="actualInstrument">Actual Instrument</label>
+                      <input name="actua" type="text" ng-model="logbook.actualInstrument" id="actualInstrument" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="simInstrument">Simulated Instrument</label>
+                      <input name="simInstrument" type="text" ng-model="logbook.simInstrument" id="simInstrument" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="flightSimulator">Flight Simulator</label>
+                      <input name="flightSimulator" type="text" ng-model="logbook.flightSimulator" id="flightSimulator" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="crossCountry">Cross Country</label>
+                      <input name="crossCountry" type="text" ng-model="logbook.crossCountry" id="crossCountry" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="solo">Solo</label>
+                      <input name="solo" type="text" ng-model="logbook.solo" id="solo" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="dualReceived">Dual Received</label>
+                      <input name="dualReceived" type="text" ng-model="logbook.dualReceived" id="dualReceived" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="pic">Pilot in Command</label>
+                      <input name="pic" type="text" ng-model="logbook.pic" id="pic" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="form-group" show-errors>
+                      <label for="totalTime">Total Duration of Flight</label>
+                      <input name="totalTime" type="text" ng-model="logbook.totalTime" id="totalTime" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" ng-model="logbook.content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
-          </div>
-          <div class="form-group">
-            <input type="submit" value="Update" class="btn btn-default">
-          </div>
-          <div ng-show="error" class="text-danger">
-            <strong ng-bind="error"></strong>
-          </div>
+          <div class="col-md-12">
+            <br>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Update Flight ✈">
+              <div ng-show="error" class="text-danger">
+                <strong ng-bind="error"></strong>
+              </div>
         </fieldset>
       </form>
     </div>

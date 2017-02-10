@@ -1,22 +1,235 @@
 <section ng-controller="LogbookController" ng-init="findOne()">
   <div class="page-header">
-    <h1 ng-bind="logbook.title"></h1>
+    <h1 class="display-1">
+    <span ng-bind="logbook.from"></span>
+    <span>✈</span>
+    <span ng-bind="logbook.to"></span>
+    </h1>
   </div>
-  <div class="pull-right" ng-show="authentication.user._id == logbook.user._id">
-    <a class="btn btn-primary" ui-sref="logbook.edit({logbookId: logbook._id})">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    <a class="btn btn-primary" ng-click="remove();">
-      <i class="glyphicon glyphicon-trash"></i>
-    </a>
+  <div>
+    <div class="jumbotron" id="jumbo">
+      <div class="row">
+        <div class="col-md-2">
+          <h5>Date</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.date | date:'MM/dd/yyyy'"></span>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Aircraft</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.aircraftType"></span>
+              <span ng-bind="logbook.aircraftID"></span>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h5>Route</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.from"> </span>
+              <span ng-bind="logbook.route"> </span>
+              <span ng-bind="logbook.to"></span>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h5>Remarks and Endorsements</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.remarks"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <h5>Takeoffs</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.takeoffs"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <h5>Landings</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.landings"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Instrument Approaches</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.numberInstApp"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h5>Single-Engine Land</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.sel"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h5>Multi-Engine Land</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.mel"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <h5>Night</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.night"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h5>Actual Instrument</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.actualInstrument"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h5>Simulated Instrument</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.simInstrument"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h5>Flight Simulator</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.flightSimulator"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <h5>Cross Country</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.crossCountry"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h5>Solo</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.solo"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h5>Dual Received</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.dualReceived"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h5>Pilot in Command</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.pic"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h5>Total Time</h5>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>
+              <span ng-bind="logbook.totalTime"></span>
+            </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="pull-center" ng-show="authentication.user._id == logbook.user._id">
+        <a class="btn btn-primary" ui-sref="logbook.edit({logbookId: logbook._id})">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="remove();">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </div>
+    </div>
   </div>
-  <small>
-    <em class="text-muted">
-      Posted on
-      <span ng-bind="logbook.created | date:'mediumDate'"></span>
-      by
-      <span ng-bind="logbook.user.displayName"></span>
-    </em>
-  </small>
-  <p class="lead" ng-bind="logbook.content"></p>
+  </div>
+
+  </div>
+
 </section>

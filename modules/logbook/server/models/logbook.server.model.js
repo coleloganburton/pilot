@@ -35,6 +35,11 @@ var LogbookSchema = new Schema({
     default: '',
     trim: true
   },
+  route: {
+    type: String,
+    default: '',
+    trim: true
+  },
   numberInstApp: {
     type: Number,
     default: 0,
@@ -42,7 +47,7 @@ var LogbookSchema = new Schema({
   },
   remarks: {
     type: String,
-    default: '',
+    default: 'None',
     trim: true
   },
   takeoffs: {
