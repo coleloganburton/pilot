@@ -1,9 +1,10 @@
 'use strict';
 
 // Logbook controller
-angular.module('logbook').controller('LogbookController', ['$scope', '$stateParams', '$location', 'Authentication', 'Logbook',
-  function ($scope, $stateParams, $location, Authentication, Logbook) {
+angular.module('logbook').controller('LogbookController', ['$scope', '$stateParams', '$filter', '$location', 'Authentication', 'Logbook',
+  function ($scope, $stateParams, $filter, $location, Authentication, Logbook) {
     $scope.authentication = Authentication;
+
 
     // Create new logbook
     $scope.create = function (isValid) {
@@ -16,29 +17,57 @@ angular.module('logbook').controller('LogbookController', ['$scope', '$statePara
       }
 
       // Create new logbook object
-      var logbook = new Logbook({
-        date: this.date,
-        aircraftType: this.aircraftType.toUpperCase(),
-        aircraftID: this.aircraftID.toUpperCase(),
-        from: this.from.toUpperCase(),
-        to: this.to.toUpperCase(),
-        route: this.route.toUpperCase(),
-        numberInstApp: this.numberInstApp,
-        remarks: this.remarks,
-        takeoffs: this.takeoffs,
-        landings: this.landings,
-        sel: this.sel,
-        mel: this.mel,
-        night: this.night,
-        actualInstrument: this.actualInstrument,
-        simInstrument: this.simInstrument,
-        flightSimulator: this.flightSimulator,
-        crossCountry: this.crossCountry,
-        solo: this.solo,
-        dualReceived: this.dualReceived,
-        pic: this.pic,
-        totalTime: this.totalTime
-      });
+      var logbook;
+
+      if (this.route){
+        logbook = new Logbook({
+          date: this.date,
+          aircraftType: this.aircraftType.toUpperCase(),
+          aircraftID: this.aircraftID.toUpperCase(),
+          from: this.from.toUpperCase(),
+          to: this.to.toUpperCase(),
+          route: this.route.toUpperCase(),
+          numberInstApp: this.numberInstApp,
+          remarks: this.remarks,
+          takeoffs: this.takeoffs,
+          landings: this.landings,
+          sel: this.sel,
+          mel: this.mel,
+          night: this.night,
+          actualInstrument: this.actualInstrument,
+          simInstrument: this.simInstrument,
+          flightSimulator: this.flightSimulator,
+          crossCountry: this.crossCountry,
+          solo: this.solo,
+          dualReceived: this.dualReceived,
+          pic: this.pic,
+          totalTime: this.totalTime
+        });
+      }else{
+        logbook = new Logbook({
+          date: this.date,
+          aircraftType: this.aircraftType.toUpperCase(),
+          aircraftID: this.aircraftID.toUpperCase(),
+          from: this.from.toUpperCase(),
+          to: this.to.toUpperCase(),
+          route: this.route,
+          numberInstApp: this.numberInstApp,
+          remarks: this.remarks,
+          takeoffs: this.takeoffs,
+          landings: this.landings,
+          sel: this.sel,
+          mel: this.mel,
+          night: this.night,
+          actualInstrument: this.actualInstrument,
+          simInstrument: this.simInstrument,
+          flightSimulator: this.flightSimulator,
+          crossCountry: this.crossCountry,
+          solo: this.solo,
+          dualReceived: this.dualReceived,
+          pic: this.pic,
+          totalTime: this.totalTime
+        });
+      }
 
       // Redirect after save
       logbook.$save(function (response) {
@@ -118,5 +147,7 @@ angular.module('logbook').controller('LogbookController', ['$scope', '$statePara
         logbookId: $stateParams.logbookId
       });
     };
+
+
   }
 ]);
