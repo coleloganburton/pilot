@@ -17,8 +17,7 @@ var config = require('../config'),
   helmet = require('helmet'),
   flash = require('connect-flash'),
   consolidate = require('consolidate'),
-  path = require('path'),
-  cors = require('cors');
+  path = require('path');
 
 /**
  * Initialize local variables
@@ -56,9 +55,6 @@ module.exports.initMiddleware = function (app) {
 
   // Enable jsonp
   app.enable('jsonp callback');
-
-  //Enable CORS
-  app.use(cors());
 
   // Should be placed before express.static
   app.use(compress({
@@ -187,9 +183,6 @@ module.exports.initModulesServerRoutes = function (app) {
     require(path.resolve(routePath))(app);
   });
 };
-module.exports.initCorsOption = function(app){
-  app.options('*', cors());
-};
 /**
  * Configure error handling
  */
@@ -249,9 +242,6 @@ module.exports.init = function (db) {
 
   // Initialize modules server authorization policies
   this.initModulesServerPolicies(app);
-
-  // Initialise Cors options
-  this.initCorsOption(app);
 
   // Initialize modules server routes
   this.initModulesServerRoutes(app);
