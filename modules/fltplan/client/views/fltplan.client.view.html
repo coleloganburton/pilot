@@ -4,7 +4,7 @@
       <div class="col-md-4">
         <h1>Flight Plan</h1>
       </div>
-      <form class="form-horizontal" ng-submit="submit()">
+      <form class="form-horizontal" ng-submit="validateRoute(route)">
         <div class="col-md-4" style="margin-top: 2em">
           <input class="form-control col-md-4" type="text" ng-model="route" ng-change="route=route.toUpperCase();" placeholder="Search airport ID or route" />
         </div>

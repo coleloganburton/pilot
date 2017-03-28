@@ -17,15 +17,60 @@ angular.module('fltplans').controller('fltplansController', ['$scope', '$http', 
     //var testURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'https%3A%2F%2Faviationweather.gov%2Fadds%2Fdataserver_current%2Fhttpparam%3FdataSource%3Dmetars%26requestType%3Dretrieve%26format%3Dxml%26stationString%3DKDEN%2520KSEA%2C%2520PHNL%26hoursBeforeNow%3D2'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
     //try encoding urls
 
-    $scope.submit = function () {
-      var RequestURL = yahoo + select + queryURL + encodeURIComponent($scope.route) + extra + format;
+    $scope.validateRoute = function (route) {
+      var input = route.split(" ");
+      var isValid = false;
+
+      //format input
+      for (var x = 0; x < input.length; x++){
+        if (input[x].length < 3)
+        {
+          //Invalid entry, exit loop, alert user
+          isValid = false;
+          break;
+        }
+        else if (input[x].length === 3) {
+          //"K" must preceed all U.S. Airports
+          input[x] = "K" + input[x];
+          isValid = true;
+        }
+        else if (input[x].length === 4) {
+          isValid = true;
+        }
+        else{
+          isValid = false;
+          break;
+        }
+      }
+
+      //Form request route
+      var requestRoute = input[0] + ",";
+      for (var y = 1; y < input.length; y++){
+        requestRoute += input[y] + ",";
+      }
+
+      //check valid
+      if (isValid){
+        $scope.submit(requestRoute);
+      }
+      else{
+        alert("Invalid Input");
+      }
+    };
+
+    $scope.submit = function (route) {
+
+
+
+      var RequestURL = yahoo + select + queryURL + encodeURIComponent(route) + extra + format;
+
 
       //GET METARs from YQL
       $http.get(RequestURL)
-    .success(function(data){
-      //console.log(data);
-      //console.log(data.query.results.body.response.data_source.request.errors.warnings.data.metar);
-      $scope.metars = data.query.results.body.response.data_source.request.errors.warnings.data.metar;
+    .then(function(response){
+      //console.log(response);
+      //console.log(response.data.query.results.body.response.data_source.request.errors.warnings.data.metar);
+      $scope.metars = response.data.query.results.body.response.data_source.request.errors.warnings.data.metar;
 
       $scope.flightConditions = function (metar) {
         if(metar.sky_condition.flight_category){
