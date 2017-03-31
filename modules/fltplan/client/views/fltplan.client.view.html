@@ -21,53 +21,96 @@
       </div>
     </div>
   </div>
-  <div class="page-body">
+  <div class="page-body" ng-show="showBody">
     <div class="jumbotron" id="jumbo">
       <div class="row">
         <div class="col-md-6">
-          <h2>Airport</h2>
-          <div class="row">
-<!--
-sample code needs to be erased
-            <div id="bar">
-              <span>X60 WILLISTON MUNI</span>
+          <h2>Airports</h2>
+          <div class="row" ng-repeat="airport in airports">
+            <div class="row">
+              <div class="col-md-12">
+                <h2><span>{{ airport.ident }}</span></h2>
+              </div>
             </div>
-            <div class="afd_div_city">
-              <span class="afd_font_city">WILLISTON, FL</span>
+            <div class="row">
+              <div class="col-md-12">
+                <h4><span>{{ airport.city }}</span></h4>
+              </div>
             </div>
-            <div class="afd">
-              <div class="afd_div_0">
-                <span class="afd_font_2">WILLISTON MUNI</span> <span class="afd_tab_1"></span>
-                <span class="afd_font_0">(X60) <span class="afd_tab_1"></span>2 SW <span class="afd_tab_1"></span>UTC–5(–4DT) <span class="afd_tab_1"></span>N29°21.33′ W82°28.31′</span>
+            <div class="row">
+              <div class="col-md-12">
+                <span ng-hide="airport.chartURL == null">
+                  <a target="_new" href="{{ airport.chartLink }}">
+                    <img ng-src="{{ airport.chartURL }}" width=350 height=350>
+                  </a></span>
               </div>
-              <div class="afd_div_1"><span class="afd_font_0">76 <span class="afd_tab_1"></span>B <span class="afd_tab_1"></span>NOTAM FILE GNV</span>
-              </div>
-              <div class="afd_div_1"><span class="afd_font_3">RWY 05–23:</span> <span class="afd_font_0">H6669X100 (CONC) <span class="afd_tab_1"></span>S–72, D–95, 2D–160 <span class="afd_tab_1"></span>HIRL</span>
-              </div>
-              <div class="afd_div_2"><span class="afd_font_3">RWY 05:</span> <span class="afd_font_0">REIL. PAPI(P2L)—GA 3.0° TCH 73′. Trees.</span></div>
-              <div class="afd_div_2"><span class="afd_font_3">RWY 23:</span> <span class="afd_font_0">REIL. PAPI(P2L)—GA 3.0° TCH 50′. Trees.</span></div>
-              <div class="afd_div_1"><span class="afd_font_3">RWY 14–32:</span> <span class="afd_font_0">H4979X60 (ASPH) <span class="afd_tab_1"></span>S–38 <span class="afd_tab_1"></span>MIRL</span>
-              </div>
-              <div class="afd_div_2"><span class="afd_font_3">RWY 14:</span> <span class="afd_font_0">REIL. PAPI(P2L)—GA 3.0° TCH 42′. Trees.</span></div>
-              <div class="afd_div_2"><span class="afd_font_3">RWY 32:</span> <span class="afd_font_0">REIL. PAPI(P2L)—GA 3.0° TCH 44′. Trees.</span></div>
-              <div class="afd_div_1"><span class="afd_font_3">SERVICE:</span> <span class="afd_tab_1"></span><span class="afd_font_0">S4</span> <span class="afd_tab_1"></span><span class="afd_font_3">FUEL</span> <span class="afd_font_0">100LL, JET A</span> <span class="afd_tab_1"></span><span
-                    class="afd_font_3">LGT</span><span class="afd_font_0">ACTIVATE HIRL Rwy 05–23, MIRL Rwy 14–32, REIL Rwy 05, and Rwy 23, Rwy 14, and Rwy 32 and PAPI Rwy 14 and Rwy 32—CTAF. PAPI Rwy 05 and Rwy 23 opr continuously.</span></div>
-              <div class="afd_div_1"><span class="afd_font_3">AIRPORT REMARKS:</span> <span class="afd_font_0">Attended 1300–2300Z‡. Infld berm blocking vision btn rwy ends. Rwy 14–32 25′ shoulders both sides of rwy entire length.</span></div>
-              <div class="afd_div_1"><span class="afd_font_3">AIRPORT MANAGER:</span> <span class="afd_font_0">(352) 528-3060</span></div>
-              <div class="afd_div_1"><span class="afd_font_3">WEATHER DATA SOURCES: AWOS–3T</span> <span class="afd_font_0">118.425 (352) 528–9949.</span></div>
-              <div class="afd_div_1"><span class="afd_font_3">COMMUNICATIONS: CTAF/UNICOM</span> <span class="afd_font_0">122.8</span></div>
-              <div class="afd_div_1"><span class="afd_font_3"> ®JACKSONVILLE APP/DEP CON</span> <span class="afd_font_0">118.6</span></div>
-              <div class="afd_div_1"><span class="afd_font_3">RADIO AIDS TO NAVIGATION:</span> <span class="afd_tab_1"></span><span class="afd_font_0">NOTAM FILE GNV.</span></div>
-              <div class="afd_div_2"><span class="afd_font_3">GATORS (L) VORTAC</span> <span class="afd_font_0">116.2 <span class="afd_tab_1"></span>GNV <span class="afd_tab_1"></span>Chan 109 <span class="afd_tab_1"></span>N29°41.53′ W82°16.38′ <span class="afd_tab_1"></span>211°
-                22.7 NM to fld. 128/4W.</span> <span class="afd_tab_1"></span><span class="afd_font_3">HIWAS.</span></div>
-              <div class="afd_div_2"><span class="afd_font_0">VORTAC unusable:</span></div>
-              <div class="afd_div_2"><span class="afd_font_0">Byd 25 NM blo 3,000′</span></div>
             </div>
-
-            <p class="note">
-              See the <a href="http://www.aeronav.faa.gov/afd/05JAN2017/se_166_05JAN2017.pdf">official PDF source</a>.
-            </p>
--->
+            <div class="row">
+              <div class="col-md-12">
+                <h4><span>{{ airport.elevation }} at {{ airport.latLong }}</span></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h3><span>Airport Frequencies:</span></h3>
+              </div>
+            </div>
+            <table>
+              <tr ng-repeat="comm in airport.comms">
+                <td>
+                  <span>{{ comm.td[0] }}</span>
+                </td>
+                <td>
+                  <span>{{ comm.td[1] }}</span>
+                </td>
+                <td>
+                  <span>{{ comm.td[2] }}</span>
+                </td>
+                <td>
+                  <span>{{ comm.td[3] }}</span>
+                </td>
+              </tr>
+            </table>
+            <div class="row">
+              <div class="col-md-4 ">
+                <span>A/FD:</span>
+              </div>
+              <div class="col-md-8">
+                <span>A/FD Link</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 ">
+                <span>Taxi Diagram:</span>
+              </div>
+              <div class="col-md-8">
+                <span>Taxi Diagram</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 ">
+                <span>Notams:</span>
+              </div>
+              <div class="col-md-8">
+                <span>Notams Link</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 ">
+                <span>Runways:</span>
+              </div>
+              <div class="col-md-8">
+                <span>{{ airport.runways }}Runway in Runways</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 ">
+                <span>Remarks:</span>
+              </div>
+              <div class="col-md-8">
+                <span>remarks</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-md-6">
