@@ -39,8 +39,7 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
   var fltplan = req.fltplan;
 
-  fltplan.title = req.body.title;
-  fltplan.content = req.body.content;
+  fltplan.route = req.body.route;
 
   fltplan.save(function (err) {
     if (err) {

@@ -50,3 +50,29 @@ a:hover .header-profile-image {
   padding: 15px;
   width: auto;
 }
+table, th {
+  width:100%;
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+td {
+  width:25%;
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+.jumbotron{
+  padding: 10px 100px;
+}

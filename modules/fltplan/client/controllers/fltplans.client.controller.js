@@ -1,10 +1,18 @@
 'use strict';
 
 // fltplans controller
-angular.module('fltplans').controller('fltplansController', ['$scope', '$filter','$http', '$stateParams', '$location', 'Authentication', 'fltplans',
-  function ($scope, $filter, $http, $stateParams, $location, Authentication, fltplans) {
+angular.module('fltplans').controller('fltplansController', ['$scope', '$filter','$http', '$stateParams', '$location', 'Authentication', 'Fltplans',
+  function ($scope, $filter, $http, $stateParams, $location, Authentication, Fltplans) {
 
     $scope.authentication = Authentication;
+
+    var objExists = function (obj) {
+      for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+          return true;
+      }
+      return false;
+    };
 
     $scope.airports = {};
 
@@ -70,7 +78,7 @@ angular.module('fltplans').controller('fltplansController', ['$scope', '$filter'
       var yahoo = 'https://query.yahooapis.com/v1/public/yql?q=';
       var select = "select%20*%20from%20html%20where%20url%3D'";
       var queryURL = encodeURIComponent("https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=");
-      var extra = "%26hoursBeforeNow%3D2";
+      var extra = "%26hoursBeforeNow%3D3";
       var format = "'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
       var RequestURL = yahoo + select + queryURL + encodeURIComponent(route) + extra + format;
@@ -82,11 +90,12 @@ angular.module('fltplans').controller('fltplansController', ['$scope', '$filter'
       //console.log(response.data.query.results.body.response.data_source.request.errors.warnings.data.metar);
       $scope.metars = response.data.query.results.body.response.data_source.request.errors.warnings.data.metar;
 
+      //check conditions
       $scope.flightConditions = function (metar) {
-        if(metar.sky_condition.flight_category){
+        if(metar.sky_condition.flight_category !== undefined){
           return metar.sky_condition.flight_category;
         }
-        else if (metar.sky_condition.sky_condition) {
+        else if (metar.sky_condition.sky_condition.flight_category !== undefined) {
           return metar.sky_condition.sky_condition.flight_category;
         }
         else {
@@ -131,7 +140,7 @@ angular.module('fltplans').controller('fltplansController', ['$scope', '$filter'
       var chartURL = [5];
       chartURL[0] = 'http://vfrmap.com/api?req=map&type=vfrc&lat=';
       chartURL[1] = '&lon=';
-      chartURL[2] = '&zoom=10&width=350&height=350';
+      chartURL[2] = '&zoom=10&width=500&height=350';
       chartURL[3] = 'http://vfrmap.com/?type=vfrc&lat=';
       chartURL[4] = '&zoom=10';
       var thisURL;
@@ -193,6 +202,21 @@ angular.module('fltplans').controller('fltplansController', ['$scope', '$filter'
           if (attribute === 'comms'){
             $scope.airports[idx][attribute] = response.data.query.results.div.table.tbody.tr;
           }
+          console.log(response.data.query.results.div);
+        },function(err){
+          console.log("Error, could not get data for Airport:" + $scope.airports[idx].ident + "Attribute: " + attribute);
+        });
+      };
+
+      var a3 = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'https%3A%2F%2Fnfdc.faa.gov%2FnfdcApps%2Fservices%2FairportLookup%2FairportDisplay.jsp%3FairportId%3D";
+      var b3 = "'%20and%20xpath%3D'%2F%2Fspan%5B%40class%3D%22";
+      var c3 = "%22%5D'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
+
+      var getData3 = function(idx, target, attribute) {
+        thisURL = a3 + $scope.airports[idx].ident + b3 + target + c3;
+        $http.get(thisURL)
+        .then(function(response){
+          $scope.airports[idx][attribute] = response.data.query.results.span;
           console.log($scope.airports);
         },function(err){
           console.log("Error, could not get data for Airport:" + $scope.airports[idx].ident + "Attribute: " + attribute);
@@ -213,40 +237,59 @@ angular.module('fltplans').controller('fltplansController', ['$scope', '$filter'
         //getData(index, encodeURIComponent("Attendance"), "attendance");
         getData(index, encodeURIComponent("Wind Indicator"), "windIndicator");
         getData(index, encodeURIComponent("Beacon"), "beacon");
-        getData(index, encodeURIComponent("Landing Fee"), "fee");
+        //getData(index, encodeURIComponent("Landing Fee"), "fee");
         //comms
         getData2(index, encodeURIComponent("communications"), "comms");
         //runways
         getData2(index, encodeURIComponent("runway"), "runways");
         //nav chart
+        getData3(index, encodeURIComponent("chartLink"), "charts");
       }
 
 
+      //search extra comm response
+      $scope.findComm = function (com) {
+        //console.log(com);
+        //defined
+        if (com !== undefined)
+        {
+          if(com.span !== undefined){
+            return com.span.content;
+          }
+          else if(com.content !== undefined){
+            return com.content;
+          }
+          else{
+            return com;
+          }
+        }
+        //undefined
+        return "";
+      };
+
+
     };
-/*
+
     // Create new fltplan
-    $scope.create = function (isValid) {
+    $scope.create = function () {
       $scope.error = null;
 
+      /*
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'fltplanForm');
 
         return false;
       }
+      */
 
       // Create new fltplan object
       var fltplan = new Fltplans({
-        title: this.title,
-        content: this.content
+        route: this.route
       });
 
       // Redirect after save
       fltplan.$save(function (response) {
         $location.path('fltplans/' + response._id);
-        console.log('HERE YO');
-        // Clear form fields
-        $scope.title = '';
-        $scope.content = '';
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -299,6 +342,6 @@ angular.module('fltplans').controller('fltplansController', ['$scope', '$filter'
         fltplanId: $stateParams.fltplanId
       });
     };
-    */
+
   }
 ]);

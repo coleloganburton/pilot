@@ -25,19 +25,19 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [{
       resources: '/api/fltplans',
-      permissions: ['get', 'post']
+      permissions: '*'
     }, {
       resources: '/api/fltplans/:fltplanId',
-      permissions: ['get']
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/fltplans',
-      permissions: ['get']
+      permissions: '*'
     }, {
       resources: '/api/fltplans/:fltplanId',
-      permissions: ['get']
+      permissions: '*'
     }]
   }]);
 };

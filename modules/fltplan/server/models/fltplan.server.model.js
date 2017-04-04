@@ -14,16 +14,11 @@ var fltplanSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  title: {
+  route: {
     type: String,
     default: '',
     trim: true,
-    required: 'Title cannot be blank'
-  },
-  content: {
-    type: String,
-    default: '',
-    trim: true
+    required: 'Route cannot be blank'
   },
   user: {
     type: Schema.ObjectId,
