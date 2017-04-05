@@ -1,10 +1,15 @@
 'use strict';
 
 // fltplans controller
-angular.module('fltplans').controller('fltplansController', ['$scope', '$filter','$http', '$stateParams', '$location', 'Authentication', 'Fltplans',
-  function ($scope, $filter, $http, $stateParams, $location, Authentication, Fltplans) {
+angular.module('fltplans').controller('fltplansController', ['$scope', '$element', '$filter','$http', '$stateParams', '$location', 'Authentication', 'Fltplans',
+  function ($scope, $element, $filter, $http, $stateParams, $location, Authentication, Fltplans) {
 
     $scope.authentication = Authentication;
+
+    var setRoute = function (r) {
+      $scope.route = r;
+      console.log("set");
+    };
 
     var objExists = function (obj) {
       for(var key in obj) {
@@ -289,7 +294,7 @@ angular.module('fltplans').controller('fltplansController', ['$scope', '$filter'
 
       // Redirect after save
       fltplan.$save(function (response) {
-        $location.path('fltplans/' + response._id);
+        alert("Favorite route saved!");
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });

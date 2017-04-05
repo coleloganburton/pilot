@@ -1,21 +1,34 @@
-<section class="container" ng-controller="fltplansController">
+<section class="container" ng-controller="fltplansController" ng-init="find()">
   <div class="page-header">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h1>Flight Plan</h1>
       </div>
-      <form class="form-horizontal" ng-submit="validateRoute(route)">
-        <div class="col-md-4" style="margin-top: 2em">
+      <form class="form-horizontal">
+        <div class="col-md-6" style="margin-top: 2em">
           <div class="input-group">
-            <input class="form-control col-md-4" type="text" ng-model="route" ng-change="route=route.toUpperCase();" placeholder="Search airport ID or route" />
             <span class="input-group-btn">
-              <button class="btn btn-primary" type="button" ng-model="search"><span>Plan Route ✈</span></button>
+              <div class="btn-group" ng-class='{open: open}'>
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-click='open=!open'>
+               Favorites <span class="caret"></span>
+              </button>
+                <ul class="dropdown-menu">
+                  <input disable-auto-close type="text" ng-model="sFilter" ng-change=sFilter=sFilter.toUpperCase();"" placeholder="Search..."></input>
+                  <li ng-repeat="choice in fltplans | filter: sFilter" ng-click="setChoiceIndex($index);$parent.open =!$parent.open">
+                    <a ng-click="$parent.route=choice.route;$parent.validateRoute(route);">{{ choice.route }}</a>
+                  </li>
+                </ul>
+              </div>
+            </span>
+            <input class="form-control col-md-4" type="text" ng-model="route" ng-bind="route" ng-change="route=route.toUpperCase();" placeholder="Search airport ID or route" ng-submit="validateRoute(route)" />
+            <span class="input-group-btn">
+              <button class="btn btn-primary" ng-click="validateRoute(route)" type="button" ng-model="search"><span>Plan Route ✈</span></button>
             </span>
           </div>
         </div>
       </form>
-      <div class="col-md-4" style="margin-top: 2em">
-        <button class="btn btn-primary pull-right" ng-submit="create()">
+      <div class="col-md-3" style="margin-top: 2em">
+        <button class="btn btn-primary pull-right" ng-click="create()">
           <span>Save to Favorites ✈</span>
         </button>
       </div>
