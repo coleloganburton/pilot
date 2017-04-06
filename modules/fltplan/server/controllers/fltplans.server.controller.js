@@ -73,7 +73,8 @@ exports.delete = function (req, res) {
  * List of fltplans
  */
 exports.list = function (req, res) {
-  Fltplan.find().sort('-created').populate('user', 'displayName').exec(function (err, fltplans) {
+  var userI = req.user.id; //grab User ID, use .find with param to only grab logs from that user
+  Fltplan.find({ user: { _id: userI } }).sort('-created').populate('user', 'displayName').exec(function (err, fltplans) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

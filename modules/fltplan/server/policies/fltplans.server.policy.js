@@ -34,10 +34,10 @@ exports.invokeRolesPolicies = function () {
     roles: ['guest'],
     allows: [{
       resources: '/api/fltplans',
-      permissions: '*'
+      permissions: ['get']
     }, {
       resources: '/api/fltplans/:fltplanId',
-      permissions: '*'
+      permissions: ['get']
     }]
   }]);
 };
