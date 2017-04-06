@@ -3,7 +3,104 @@ body{
         background-size: cover;
 }
 #jumbo{
-  background: rgba(243, 248, 251, 0.95);
+  background: rgba(243, 248, 251);
+}
+.funky-show-hide.ng-hide-add {
+  transform: rotateX(0);
+  transform-origin: top;
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.funky-show-hide.ng-hide-add.ng-hide-add-active {
+  transform: rotateX(-90deg);
+  opacity: 0;
+}
+
+.funky-show-hide.ng-hide-remove {
+  transform: rotateX(90deg);
+  transform-origin: top;
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.funky-show-hide.ng-hide-remove.ng-hide-remove-active {
+  transform: rotateX(0);
+  opacity: 1;
+}
+
+.check-element {
+  opacity: 1;
+  padding: 10px;
+}
+.button {
+  color: #000000;
+  text-align: center;
+  font-size: 3em;
+  width: 100%;
+  transition: all 2s;
+  cursor: pointer;
+  margin: 1em;
+}
+.airbtn {
+  overflow-x: auto;
+}
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 1s;
+}
+
+.button span:after {
+  content: '\2708';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -50px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 40px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  left: 140px;
+}
+.buttonM {
+  color: #000000;
+  text-align: center;
+  font-size: 3em;
+  width: 100%;
+  transition: all 2s;
+  cursor: pointer;
+  margin: 1em;
+}
+.buttonM span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 1s;
+}
+
+.buttonM span:after {
+  content: '\2600';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -50px;
+  transition: 0.5s;
+}
+
+.buttonM:hover span {
+  padding-right: 40px;
+}
+
+.buttonM:hover span:after {
+  opacity: 1;
+  left: 320px;
 }
 .content {
   margin-top: 50px;

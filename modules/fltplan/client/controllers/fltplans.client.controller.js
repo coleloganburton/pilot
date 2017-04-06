@@ -6,6 +6,30 @@ angular.module('fltplans').controller('fltplansController', ['$scope', '$element
 
     $scope.authentication = Authentication;
 
+    $scope.open = false;
+    $scope.showMETAR = false;
+
+    $scope.collapse = function (airport) {
+      airport.collapsed = !airport.collapsed;
+      for (var qw = 0; qw < $scope.airports.length; qw++){
+        if (airport !== $scope.airports[qw]){
+          $scope.airports[qw].collapsed = true;
+        }
+      }
+    };
+
+    $scope.collapseMETAR = function () {
+      $scope.showMETAR = !$scope.showMETAR;
+    };
+
+    $scope.toggleDropdown = function () {
+      $scope.open = !$scope.open;
+    };
+
+    $scope.leaveDropdown = function () {
+      $scope.open = false;
+    };
+
     var setRoute = function (r) {
       $scope.route = r;
       console.log("set");
@@ -29,32 +53,38 @@ angular.module('fltplans').controller('fltplansController', ['$scope', '$element
       $scope.airports = [];
 
       //format input
-      for (var x = 0; x < input.length; x++){
-        if (input[x].length < 3)
-        {
-          //Invalid entry, exit loop, alert user
-          isValid = false;
-          break;
-        }
-        else if (input[x].length === 3) {
-          //"K" must preceed all U.S. Airports
-          input[x] = "K" + input[x];
-          isValid = true;
-        }
-        else if (input[x].length === 4) {
-          isValid = true;
-        }
-        else{
-          isValid = false;
-          break;
-        }
+      if (input.length > 7){
+        isValid = false;
+      }
+      else{
+        for (var x = 0; x < input.length; x++){
+          if (input[x].length < 3)
+          {
+            //Invalid entry, exit loop, alert user
+            isValid = false;
+            break;
+          }
+          else if (input[x].length === 3) {
+            //"K" must preceed all U.S. Airports
+            input[x] = "K" + input[x];
+            isValid = true;
+          }
+          else if (input[x].length === 4) {
+            isValid = true;
+          }
+          else{
+            isValid = false;
+            break;
+          }
 
-        //assign airport to airports
-        $scope.airports.push({
-          ident: input[x],
-          sortable: true,
-          resizable: true
-        });
+          //assign airport to airports
+          $scope.airports.push({
+            ident: input[x],
+            collapsed: true,
+            sortable: true,
+            resizable: true
+          });
+        }
       }
       //console.log($scope.airports);
 

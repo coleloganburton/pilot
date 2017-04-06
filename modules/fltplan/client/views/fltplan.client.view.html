@@ -1,141 +1,160 @@
 <section class="container" ng-controller="fltplansController" ng-init="find()">
   <div class="page-header">
     <div class="row">
-      <div class="col-md-3">
-        <h1>Flight Plan</h1>
-      </div>
-      <form class="form-horizontal">
-        <div class="col-md-6" style="margin-top: 2em">
-          <div class="input-group">
-            <span class="input-group-btn">
-              <div class="btn-group" ng-class='{open: open}'>
-                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" ng-click='open=!open'>
-               Favorites <span class="caret"></span>
-              </button>
-                <ul class="dropdown-menu">
-                  <input disable-auto-close type="text" ng-model="sFilter" ng-change=sFilter=sFilter.toUpperCase();"" placeholder="Search..."></input>
-                  <li ng-repeat="choice in fltplans | filter: sFilter" ng-click="setChoiceIndex($index);$parent.open =!$parent.open">
-                    <a ng-click="$parent.route=choice.route;$parent.validateRoute(route);">{{ choice.route }}</a>
-                  </li>
-                </ul>
-              </div>
-            </span>
-            <input class="form-control col-md-4" type="text" ng-model="route" ng-bind="route" ng-change="route=route.toUpperCase();" placeholder="Search airport ID or route" ng-submit="validateRoute(route)" />
-            <span class="input-group-btn">
-              <button class="btn btn-primary" ng-click="validateRoute(route)" type="button" ng-model="search"><span>Plan Route ✈</span></button>
-            </span>
-          </div>
-        </div>
-      </form>
       <div class="col-md-3" style="margin-top: 2em">
-        <button class="btn btn-primary pull-right" ng-click="create()">
+        <span class="input-group-btn" deep-blur="leaveDropdown()">
+          <div class="btn-group" ng-class='{open: open}' >
+            <button class="btn btn-primary pull-left" data-toggle="dropdown" ng-click="toggleDropdown();find();">
+           Favorites <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="overflow: auto">
+          <span class="form-group">
+              <input disable-auto-close type="text" class="form-control" ng-model="sFilter" ng-change="sFilter=sFilter.toUpperCase();" placeholder="Search..."></input>
+          </span>
+          <span class="label label-default" ng-if="equals({}, fltplans)">No favorites</span>
+          <li ng-repeat="choice in fltplans | filter: sFilter" ng-click="setChoiceIndex($index);$parent.toggleDropdown();">
+            <button class="btn btn-default btn-lg" type="button" ng-click="$parent.route=choice.route;$parent.validateRoute(route);">{{ choice.route }}</button>
+            <button class="btn btn-danger btn-xs glyphicon glyphicon-remove" type="button" ng-click="remove(choice);find();"></button>
+          </li>
+        </ul>
+      </div>
+      </span>
+    </div>
+    <form class="form-horizontal" ng-submit="validateRoute(route)">
+      <div class="col-md-6" style="margin-top: 2em">
+        <div class="input-group">
+
+
+          <input class="form-control col-md-4" type="text" ng-model="route" ng-change="route=route.toUpperCase();" placeholder="Search airport ID or route" ng-submit="validateRoute(route)">
+          <span class="input-group-btn">
+              <button class="btn btn-primary" ng-click="validateRoute(route)" type="button" ng-model="search"><span>Plan Route ✈</span></button>
+          </span>
+
+        </div>
+      </div>
+    </form>
+    <div class="col-md-3" style="margin-top: 2em">
+      <button class="btn btn-primary pull-right" ng-click="create();find();">
           <span>Save to Favorites ✈</span>
         </button>
-      </div>
     </div>
   </div>
+  </div>
   <div class="page-body" ng-show="showBody">
-    <div class="jumbotron" id="jumbo">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="row" ng-repeat="airport in airports">
-            <div class="row">
-              <div class="col-md-12" style="text-align:center;" ng-hide="airport.ident == null">
-                <h1><span class="label label-default">{{ airport.ident }}</span></h1>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="btn-group btn-group-justified airbtn">
+          <div class="btn-group" role="group" ng-repeat="airport in airports">
+            <button type="button" class="button btn" ng-click="collapse(airport)"><span>{{ airport.ident }}</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-repeat="airport in airports">
+      <div class="check-element funky-show-hide" ng-hide="airport.collapsed">
+        <!--Start Airport Details -->
+        <div class="jumbotron" id="jumbo">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-12" ng-hide="airport.city == null">
+                  <h4><span>{{ airport.city }}</span></h4>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12" ng-hide="airport.city == null">
-                <h4><span>{{ airport.city }}</span></h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <span ng-hide="airport.chartURL == null">
+              <div class="row">
+                <div class="col-md-12">
+                  <span ng-hide="airport.chartURL == null">
                   <a target="_new" href="{{ airport.chartLink }}">
                     <img ng-src="{{ airport.chartURL }}" width=500em height=350em>
                   </a></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12" ng-hide="airport.elevation == null">
+                  <h4><span>{{ airport.elevation }} at {{ airport.latLong }}</span></h4>
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12" ng-hide="airport.elevation == null">
-                <h4><span>{{ airport.elevation }} at {{ airport.latLong }}</span></h4>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-12" ng-hide="airport == null">
+                  <h3><span>Information:</span></h3>
+                </div>
+              </div>
+              <div class="row" ng-hide="airport.variation == null">
+                <div class="col-md-4">
+                  <span><strong>Magnetic Variation:</strong></span>
+                </div>
+                <div class="col-md-8">
+                  <span>{{ airport.variation }}</span>
+                </div>
+              </div>
+              <div class="row" ng-hide="airport.sectional == null">
+                <div class="col-md-4">
+                  <span><strong>Sectional:</strong></span>
+                </div>
+                <div class="col-md-8">
+                  <span>{{ airport.sectional }}</span>
+                </div>
+              </div>
+              <div class="row" ng-hide="airport.timezone == null">
+                <div class="col-md-4">
+                  <span><strong>Timezone:</strong></span>
+                </div>
+                <div class="col-md-8">
+                  <span>{{ airport.timezone }}</span>
+                </div>
+              </div>
+              <div class="row" ng-hide="airport.faciltyUse == null">
+                <div class="col-md-4">
+                  <span><strong>Facility Use:</strong></span>
+                </div>
+                <div class="col-md-8">
+                  <span>{{ airport.facilityUse }}</span>
+                </div>
+              </div>
+              <div class="row" ng-hide="airport.fss.content == null">
+                <div class="col-md-4">
+                  <span><strong>Flight Service Station:</strong></span>
+                </div>
+                <div class="col-md-8">
+                  <span>{{ airport.fss.content }}</span>
+                </div>
+              </div>
+              <div class="row" ng-hide="airport.windIndicator == null">
+                <div class="col-md-4">
+                  <span><strong>Wind Indicator:</strong></span>
+                </div>
+                <div class="col-md-8">
+                  <span>{{ airport.windIndicator }}</span>
+                </div>
+              </div>
+              <div class="row" ng-hide="airport.beacon.content == null">
+                <div class="col-md-4">
+                  <span><strong>Beacon:</strong></span>
+                </div>
+                <div class="col-md-8">
+                  <span>{{ airport.beacon.content }}</span>
+                </div>
+              </div>
+              <div class="row" ng-hide="airport.fee == null">
+                <div class="col-md-4">
+                  <span><strong>Landing Fee:</strong></span>
+                </div>
+                <div class="col-md-8">
+                  <span>{{ airport.fee }}</span>
+                </div>
+              </div>
+              <br>
+              <br>
+              <div class="row" ng-hide="airport.ident == null">
+                <div class="col-md-12 text-center">
+                  <button type="button" class="btn btn-outline-primary"><a target="_blank" ng-href="https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=RAW&formatType=DOMESTIC&actionType=notamRetrievalByICAOs&retrieveLocId={{airport.ident}}">View Current Notams for {{ airport.ident }}</a></button>
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12" ng-hide="airport == null">
-                <h3><span>Information:</span></h3>
-              </div>
-            </div>
-            <div class="row" ng-hide="airport.ident == null">
-              <div class="col-md-12">
-                <button type="button" class="btn btn-outline-primary"><a target="_blank" ng-href="https://pilotweb.nas.faa.gov/PilotWeb/notamRetrievalByICAOAction.do?method=displayByICAOs&reportType=RAW&formatType=DOMESTIC&actionType=notamRetrievalByICAOs&retrieveLocId={{airport.ident}}">View Current Notams for {{ airport.ident }}</a></button>
-              </div>
-            </div>
-            <div class="row" ng-hide="airport.variation == null">
-              <div class="col-md-3">
-                <span>Magnetic Variation:</span>
-              </div>
-              <div class="col-md-9">
-                <span>{{ airport.variation }}</span>
-              </div>
-            </div>
-            <div class="row" ng-hide="airport.sectional == null">
-              <div class="col-md-3">
-                <span>Sectional:</span>
-              </div>
-              <div class="col-md-9">
-                <span>{{ airport.sectional }}</span>
-              </div>
-            </div>
-            <div class="row" ng-hide="airport.timezone == null">
-              <div class="col-md-3">
-                <span>Timezone:</span>
-              </div>
-              <div class="col-md-9">
-                <span>{{ airport.timezone }}</span>
-              </div>
-            </div>
-            <div class="row" ng-hide="airport.faciltyUse == null">
-              <div class="col-md-3">
-                <span>Facility Use:</span>
-              </div>
-              <div class="col-md-9">
-                <span>{{ airport.facilityUse }}</span>
-              </div>
-            </div>
-            <div class="row" ng-hide="airport.fss.content == null">
-              <div class="col-md-3">
-                <span>Flight Service Station:</span>
-              </div>
-              <div class="col-md-9">
-                <span>{{ airport.fss.content }}</span>
-              </div>
-            </div>
-            <div class="row" ng-hide="airport.windIndicator == null">
-              <div class="col-md-3">
-                <span>Wind Indicator:</span>
-              </div>
-              <div class="col-md-9">
-                <span>{{ airport.windIndicator }}</span>
-              </div>
-            </div>
-            <div class="row" ng-hide="airport.beacon.content == null">
-              <div class="col-md-3">
-                <span>Beacon:</span>
-              </div>
-              <div class="col-md-9">
-                <span>{{ airport.beacon.content }}</span>
-              </div>
-            </div>
-            <div class="row" ng-hide="airport.fee == null">
-              <div class="col-md-3">
-                <span>Landing Fee:</span>
-              </div>
-              <div class="col-md-9">
-                <span>{{ airport.fee }}</span>
-              </div>
-            </div>
+          </div>
+          <div class="row">
             <div class="row" ng-hide="airport == null">
               <div class="col-md-12">
                 <h3><span>Frequencies:</span></h3>
@@ -159,24 +178,30 @@
                 </tr>
               </table>
             </div>
-            <div class="row" ng-hide="airport.charts == null">
-              <div class="col-md-12">
-                <h3><span>Charts:</span></h3>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row" ng-hide="airport.charts == null">
+                  <div class="col-md-12">
+                    <h3><span>Charts:</span></h3>
+                  </div>
+                </div>
+                <div class="row" ng-repeat="chart in airport.charts" ng-hide="chart.a.content == null">
+                  <div class="col-md-12">
+                    <a target="_blank" ng-href="{{ chart.a.href }}">{{ chart.a.content }}</a>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="row" ng-repeat="chart in airport.charts" ng-hide="chart.a.content == null">
-              <div class="col-md-12">
-                <a target="_blank" ng-href="{{ chart.a.href }}">{{ chart.a.content }}</a>
-              </div>
-            </div>
-            <div class="row" ng-hide="airport.runways == null">
-              <div class="col-md-12">
-                <h3><span>Runways:</span></h3>
-              </div>
-            </div>
-            <div class="row" ng-repeat="runway in airport.runways">
-              <div class="col-md-12">
-                <h4><span>{{ runway.div[0].span.content }} - {{ runway.table.tbody.tr[0].td[1] }}</span></h4>
+              <div class="col-md-6">
+                <div class="row" ng-hide="airport.runways == null">
+                  <div class="col-md-12">
+                    <h3><span>Runways:</span></h3>
+                  </div>
+                </div>
+                <div class="row" ng-repeat="runway in airport.runways">
+                  <div class="col-md-12">
+                    <h4><span>{{ runway.div[0].span.content }} - {{ runway.table.tbody.tr[0].td[1] }}</span></h4>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="row" ng-hide="airport.remarks == null">
@@ -188,99 +213,110 @@
               </div>
             </div>
           </div>
+          <!--End Airport Details -->
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <h2>Recent METARs</h2>
-          <div class="row" ng-repeat="metar in metars">
-            <div class="row" ng-hide="metar.station_id == null">
-              <div class="col-md-12">
-                <h2><span>{{ metar.station_id }}</span></h2>
-              </div>
+    </div>
+    <div class="row">
+      <!--Weather -->
+      <div class="col-md-12 align-center">
+        <div class="btn-group btn-group-justified airbtn">
+          <div class="btn-group" role="group">
+            <button type="button" class="buttonM btn" ng-click="collapseMETAR()"><span>Recent METARs</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="check-element funky-show-hide" ng-show="showMETAR">
+      <div class="jumbotron" id="jumbo">
+        <div class="row" ng-repeat="metar in metars">
+          <div class="row" ng-hide="metar.station_id == null">
+            <div class="col-md-12">
+              <h2><span>{{ metar.station_id }}</span></h2>
             </div>
-            <div class="row">
-              <div class="col-md-4 ">
-                <span>Raw:</span>
-              </div>
-              <div class="col-md-8" ng-hide="metar.raw_text == null">
-                <span>{{ metar.raw_text }}</span>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 ">
+              <span>Raw:</span>
             </div>
-            <div class="row">
-              <div class="col-md-4 ">
-                <span>Flight Conditions:</span>
-              </div>
-              <div class="col-md-8" ng-hide="metar.sky_condition.flight_category == null">
-                <span>{{ flightConditions(metar) }}</span>
-              </div>
+            <div class="col-md-8" ng-hide="metar.raw_text == null">
+              <span>{{ metar.raw_text }}</span>
             </div>
-            <div class="row">
-              <div class="col-md-4 ">
-                <span>Time:</span>
-              </div>
-              <div class="col-md-8" ng-hide="metar.observation_time == null">
-                <span>{{ metar.observation_time }}</span>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 ">
+              <span>Flight Conditions:</span>
             </div>
-            <div class="row">
-              <div class="col-md-4 ">
-                <span>Winds:</span>
-              </div>
-              <div class="col-md-8" ng-hide="metar.wind_dir_degrees == null">
-                <span>{{ metar.wind_dir_degrees }}&deg; at {{ metar.wind_speed_kt }} kts</span>
-              </div>
+            <div class="col-md-8" ng-hide="metar.sky_condition.flight_category == null">
+              <span>{{ flightConditions(metar) }}</span>
             </div>
-            <div class="row">
-              <div class="col-md-4 ">
-                <span>Visibility:</span>
-              </div>
-              <div class="col-md-8" ng-hide="metar.visibility_statute_mi == null">
-                <span>{{ metar.visibility_statute_mi }} sm</span>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 ">
+              <span>Time:</span>
             </div>
-            <div class="row">
-              <div class="col-md-4 ">
-                <span>Clouds (AGL):</span>
-              </div>
-              <div class="col-md-8" ng-hide="metar.sky_condition.sky_cover == null">
-                <span>{{ metar.sky_condition.sky_cover }} {{ metar.sky_condition.cloud_base_ft_agl }}'</span>
-              </div>
+            <div class="col-md-8" ng-hide="metar.observation_time == null">
+              <span>{{ metar.observation_time }}</span>
             </div>
-            <div class="row">
-              <div class="col-md-4 ">
-                <span>Temperature:</span>
-              </div>
-              <div class="col-md-8" ng-hide="metar.temp_c == null">
-                <span>{{ metar.temp_c }}&deg;C {{ convertToF(metar.temp_c) }}&deg;F</span>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 ">
+              <span>Winds:</span>
             </div>
-            <div class="row">
-              <div class="col-md-4 ">
-                <span>Dewpoint:</span>
-              </div>
-              <div class="col-md-8" ng-hide="metar.dewpoint_c == null">
-                <span>{{ metar.dewpoint_c }}&deg;C {{ convertToF(metar.dewpoint_c) }}&deg;F</span>
-              </div>
+            <div class="col-md-8" ng-hide="metar.wind_dir_degrees == null">
+              <span>{{ metar.wind_dir_degrees }}&deg; at {{ metar.wind_speed_kt }} kts</span>
             </div>
-            <div class="row">
-              <div class="col-md-4 ">
-                <span>Altimeter:</span>
-              </div>
-              <div class="col-md-8" ng-hide="metar.altim_in_hg == null">
-                <span>{{ altim(metar.altim_in_hg) }} in Hg</span>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 ">
+              <span>Visibility:</span>
             </div>
-            <div class="row">
-              <div class="col-md-4 ">
-                <span>Humidity:</span>
-              </div>
-              <div class="col-md-8" ng-hide="metar.temp_c == null">
-                <span>{{ humidity(metar) }}%</span>
-              </div>
+            <div class="col-md-8" ng-hide="metar.visibility_statute_mi == null">
+              <span>{{ metar.visibility_statute_mi }} sm</span>
             </div>
-            <br>
-            <!--
+          </div>
+          <div class="row">
+            <div class="col-md-4 ">
+              <span>Clouds (AGL):</span>
+            </div>
+            <div class="col-md-8" ng-hide="metar.sky_condition.sky_cover == null">
+              <span>{{ metar.sky_condition.sky_cover }} {{ metar.sky_condition.cloud_base_ft_agl }}'</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 ">
+              <span>Temperature:</span>
+            </div>
+            <div class="col-md-8" ng-hide="metar.temp_c == null">
+              <span>{{ metar.temp_c }}&deg;C {{ convertToF(metar.temp_c) }}&deg;F</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 ">
+              <span>Dewpoint:</span>
+            </div>
+            <div class="col-md-8" ng-hide="metar.dewpoint_c == null">
+              <span>{{ metar.dewpoint_c }}&deg;C {{ convertToF(metar.dewpoint_c) }}&deg;F</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 ">
+              <span>Altimeter:</span>
+            </div>
+            <div class="col-md-8" ng-hide="metar.altim_in_hg == null">
+              <span>{{ altim(metar.altim_in_hg) }} in Hg</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 ">
+              <span>Humidity:</span>
+            </div>
+            <div class="col-md-8" ng-hide="metar.temp_c == null">
+              <span>{{ humidity(metar) }}%</span>
+            </div>
+          </div>
+          <br>
+          <!--
         <div class="row">
           <div class="col-md-4 text-right">
             <span>Density Altitude:</span>
@@ -290,7 +326,6 @@
           </div>
         </div>
       -->
-          </div>
         </div>
       </div>
     </div>
