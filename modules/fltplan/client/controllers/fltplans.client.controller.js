@@ -1,8 +1,21 @@
 'use strict';
 
 // fltplans controller
-angular.module('fltplans').controller('fltplansController', ['$scope', '$element', '$filter','$http', '$stateParams', '$location', 'Authentication', 'Fltplans',
-  function ($scope, $element, $filter, $http, $stateParams, $location, Authentication, Fltplans) {
+angular.module('fltplans').controller('fltplansController', ['$scope', 'growl', '$element', '$filter','$http', '$stateParams', '$location', 'Authentication', 'Fltplans',
+  function ($scope, growl, $element, $filter, $http, $stateParams, $location, Authentication, Fltplans) {
+
+    $scope.showWarning = function(){
+      growl.warning('This is warning message.',{ title: 'Warning!' });
+    };
+    $scope.showError = function(){
+      growl.error('Invalid Input. Example Input: ECP GNV LAL',{ title: 'Error!' });
+    };
+    $scope.showSuccess = function(){
+      growl.success('Favorite route saved.',{ title: 'Success!' });
+    };
+    $scope.showInfo = function(){
+      growl.info('This is an info message.',{ title: 'Info!' });
+    };
 
     $scope.authentication = Authentication;
 
@@ -99,7 +112,7 @@ angular.module('fltplans').controller('fltplansController', ['$scope', '$element
         $scope.submit(requestRoute);
       }
       else{
-        alert("Invalid Input");
+        $scope.showError();
       }
     };
 
