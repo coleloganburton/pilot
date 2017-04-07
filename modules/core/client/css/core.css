@@ -69,31 +69,7 @@ body{
   opacity: 1;
   left: 140px;
 }
-@media screen and (max-width: 860px) {
-        .button span:after {
-          content:none;
-        }
-        .button span:after {
-          content: '\2192';
-          position: absolute;
-          opacity: 0;
-          top: 0;
-          left: 20px;
-          transition: 0.5s;
-        }
 
-        .button:hover span {
-          padding-right: 20px;
-        }
-
-        .button:hover span:after {
-          opacity: 1;
-          left: 50px;
-        }
-        .buttonM span:after {
-          content: none;
-        }
-}
 .buttonM {
   color: #000000;
   text-align: center;
@@ -197,4 +173,32 @@ img {
 }
 .jumbotron{
   padding: 10px 100px;
+}
+@media screen and (max-width: 860px) {
+        .button span:after {
+          content:none;
+        }
+        .button span:after {
+          content: '\2192';
+          position: absolute;
+          opacity: 0;
+          top: 0;
+          left: 20px;
+          transition: 0.5s;
+        }
+
+        .button:hover span {
+          padding-right: 20px;
+        }
+
+        .button:hover span:after {
+          opacity: 1;
+          left: 50px;
+        }
+        .buttonM span:after {
+          content: none;
+        }
+        body {
+          background: #7ac5ff;
+        }
 }
