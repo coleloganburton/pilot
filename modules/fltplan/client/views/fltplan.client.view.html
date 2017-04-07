@@ -1,7 +1,7 @@
 <section class="container" ng-controller="fltplansController" ng-init="find()">
   <div class="page-header">
     <div class="row">
-      <div class="col-md-3" style="margin-top: 2em">
+      <div class="col-xs-12 col-md-3" style="margin-top: 2em">
         <span class="input-group-btn" deep-blur="leaveDropdown()">
           <div class="btn-group" ng-class='{open: open}' >
             <button class="btn btn-primary pull-left" data-toggle="dropdown" ng-click="toggleDropdown();find();">
@@ -33,7 +33,7 @@
         </div>
       </div>
     </form>
-    <div class="col-md-3" style="margin-top: 2em">
+    <div class="col-xs-12 col-md-3" style="margin-top: 2em">
       <button class="btn btn-primary pull-right" ng-click="create();find();">
           <span>Save to Favorites ✈</span>
         </button>
@@ -42,7 +42,7 @@
   </div>
   <div class="page-body" ng-show="showBody">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12 col-md-12">
         <div class="btn-group btn-group-justified airbtn">
           <div class="btn-group" role="group" ng-repeat="airport in airports">
             <button type="button" class="button btn" ng-click="collapse(airport)"><span>{{ airport.ident }}</span></button>
@@ -55,7 +55,7 @@
         <!--Start Airport Details -->
         <div class="jumbotron" id="jumbo">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-xs-12 col-md-6">
               <div class="row">
                 <div class="col-md-12" ng-hide="airport.city == null">
                   <h4><span>{{ airport.city }}</span></h4>
@@ -75,7 +75,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-xs-12 col-md-6">
               <div class="row">
                 <div class="col-md-12" ng-hide="airport == null">
                   <h3><span>Information:</span></h3>
@@ -156,59 +156,65 @@
           </div>
           <div class="row">
             <div class="row" ng-hide="airport == null">
-              <div class="col-md-12">
+              <div class="col-xs-12 col-md-12">
                 <h3><span>Frequencies:</span></h3>
               </div>
             </div>
             <div class="row" ng-hide="airport.comms == null">
-              <table>
-                <tr ng-repeat="comm in airport.comms">
-                  <td>
-                    <span>{{ comm.td[0] }}</span>
-                  </td>
-                  <td>
-                    <span>{{ findComm(comm.td[1]) }}</span>
-                  </td>
-                  <td>
-                    <span>{{ findComm(comm.td[2]) }}</span>
-                  </td>
-                  <td>
-                    <span>{{ findComm(comm.td[3]) }}</span>
-                  </td>
-                </tr>
-              </table>
+              <div class="col-xs-12 col-md-12">
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+                      <tr ng-repeat="comm in airport.comms">
+                        <td>
+                          <span>{{ comm.td[0] }}</span>
+                        </td>
+                        <td>
+                          <span>{{ findComm(comm.td[1]) }}</span>
+                        </td>
+                        <td>
+                          <span>{{ findComm(comm.td[2]) }}</span>
+                        </td>
+                        <td>
+                          <span>{{ findComm(comm.td[3]) }}</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-xs-12 col-md-6">
                 <div class="row" ng-hide="airport.charts == null">
                   <div class="col-md-12">
                     <h3><span>Charts:</span></h3>
                   </div>
                 </div>
                 <div class="row" ng-repeat="chart in airport.charts" ng-hide="chart.a.content == null">
-                  <div class="col-md-12">
+                  <div class="col-xs-12 col-md-12">
                     <a target="_blank" ng-href="{{ chart.a.href }}">{{ chart.a.content }}</a>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-xs-12 col-md-6">
                 <div class="row" ng-hide="airport.runways == null">
                   <div class="col-md-12">
                     <h3><span>Runways:</span></h3>
                   </div>
                 </div>
                 <div class="row" ng-repeat="runway in airport.runways">
-                  <div class="col-md-12">
+                  <div class="col-xs-12 col-md-12">
                     <h4><span>{{ runway.div[0].span.content }} - {{ runway.table.tbody.tr[0].td[1] }}</span></h4>
                   </div>
                 </div>
               </div>
             </div>
             <div class="row" ng-hide="airport.remarks == null">
-              <div class="col-md-4 ">
+              <div class="col-xs-12 col-md-4 ">
                 <span>Remarks:</span>
               </div>
-              <div class="col-md-8">
+              <div class="col-xs-12 col-md-8">
                 <span>remarks</span>
               </div>
             </div>
@@ -219,7 +225,7 @@
     </div>
     <div class="row">
       <!--Weather -->
-      <div class="col-md-12 align-center">
+      <div class="col-xs-12 col-md-12 align-center">
         <div class="btn-group btn-group-justified airbtn">
           <div class="btn-group" role="group">
             <button type="button" class="buttonM btn" ng-click="collapseMETAR()"><span>Recent METARs</span></button>
@@ -231,87 +237,87 @@
       <div class="jumbotron" id="jumbo">
         <div class="row" ng-repeat="metar in metars">
           <div class="row" ng-hide="metar.station_id == null">
-            <div class="col-md-12">
+            <div class="col-xs-12 col-md-12">
               <h2><span>{{ metar.station_id }}</span></h2>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-xs-2 col-md-4 ">
               <span>Raw:</span>
             </div>
-            <div class="col-md-8" ng-hide="metar.raw_text == null">
+            <div class="col-xs-10 col-md-8" ng-hide="metar.raw_text == null">
               <span>{{ metar.raw_text }}</span>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-xs-6 col-md-4 ">
               <span>Flight Conditions:</span>
             </div>
-            <div class="col-md-8" ng-hide="metar.sky_condition.flight_category == null">
+            <div class="col-xs-6 col-md-8" ng-hide="metar.sky_condition.flight_category == null">
               <span>{{ flightConditions(metar) }}</span>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-xs-5 col-md-4 ">
               <span>Time:</span>
             </div>
-            <div class="col-md-8" ng-hide="metar.observation_time == null">
+            <div class="col-xs-7 col-md-8" ng-hide="metar.observation_time == null">
               <span>{{ metar.observation_time }}</span>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-xs-5 col-md-4 ">
               <span>Winds:</span>
             </div>
-            <div class="col-md-8" ng-hide="metar.wind_dir_degrees == null">
+            <div class="col-xs-7 col-md-8" ng-hide="metar.wind_dir_degrees == null">
               <span>{{ metar.wind_dir_degrees }}&deg; at {{ metar.wind_speed_kt }} kts</span>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-xs-5 col-md-4 ">
               <span>Visibility:</span>
             </div>
-            <div class="col-md-8" ng-hide="metar.visibility_statute_mi == null">
+            <div class="col-xs-7 col-md-8" ng-hide="metar.visibility_statute_mi == null">
               <span>{{ metar.visibility_statute_mi }} sm</span>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-xs-5 col-md-4 ">
               <span>Clouds (AGL):</span>
             </div>
-            <div class="col-md-8" ng-hide="metar.sky_condition.sky_cover == null">
+            <div class="col-xs-7 col-md-8" ng-hide="metar.sky_condition.sky_cover == null">
               <span>{{ metar.sky_condition.sky_cover }} {{ metar.sky_condition.cloud_base_ft_agl }}'</span>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-xs-5 col-md-4 ">
               <span>Temperature:</span>
             </div>
-            <div class="col-md-8" ng-hide="metar.temp_c == null">
+            <div class="col-xs-7 col-md-8" ng-hide="metar.temp_c == null">
               <span>{{ metar.temp_c }}&deg;C {{ convertToF(metar.temp_c) }}&deg;F</span>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-xs-5 col-md-4 ">
               <span>Dewpoint:</span>
             </div>
-            <div class="col-md-8" ng-hide="metar.dewpoint_c == null">
+            <div class="col-xs-7 col-md-8" ng-hide="metar.dewpoint_c == null">
               <span>{{ metar.dewpoint_c }}&deg;C {{ convertToF(metar.dewpoint_c) }}&deg;F</span>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-xs-5 col-md-4 ">
               <span>Altimeter:</span>
             </div>
-            <div class="col-md-8" ng-hide="metar.altim_in_hg == null">
+            <div class="col-xs-7 col-md-8" ng-hide="metar.altim_in_hg == null">
               <span>{{ altim(metar.altim_in_hg) }} in Hg</span>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-xs-5 col-md-4 ">
               <span>Humidity:</span>
             </div>
-            <div class="col-md-8" ng-hide="metar.temp_c == null">
+            <div class="col-xs-7 col-md-8" ng-hide="metar.temp_c == null">
               <span>{{ humidity(metar) }}%</span>
             </div>
           </div>
