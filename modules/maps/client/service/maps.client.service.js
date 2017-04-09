@@ -58,6 +58,15 @@ angular.module('service'. [])
         return locations;
       };
 
+    var initialize = function(latitude, longitude) {
+      var myLatLng = {lat: selectedLat, lng: selectedLong};
+      if (!map){
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 3,
+            center: myLatLng
+        });
+    }
 
+    }
     }
   })
