@@ -1,5 +1,11 @@
+
+
+//adds google map service factory
 angular.module('service'. [])
   .factory('service', function($http) {
+
+    //initialize vars and service
+    //Factory should return
     var googleMapService = {}
 
     var location = [];
@@ -26,7 +32,32 @@ angular.module('service'. [])
 
       var locations = [];
     }
+      for (var i = 0; i < response.length; i++) {
+        var user = response[i];
 
-      }
+        var content =
+        '<p><b>Username</b>: ' + user.username +
+        '<br><b>Age</b>: ' + user.age +
+        '<br><b>Gender</b>: ' + user.gender +
+        '<br><b>Favorite Language</b>: ' + user.favlang +
+        '</p>';
+
+        locations.push({
+                    latlon: new google.maps.LatLng(user.location[1], user.location[0]),
+                    message: new google.maps.InfoWindow({
+                        content: contentString,
+                        maxWidth: 320
+                    }),
+                    username: user.username,
+                    gender: user.gender,
+                    age: user.age,
+                    favlang: user.favlang
+            });
+        }
+
+        return locations;
+      };
+
+
     }
   })
