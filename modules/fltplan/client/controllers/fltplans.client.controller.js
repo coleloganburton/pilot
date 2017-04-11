@@ -250,7 +250,7 @@ angular.module('fltplans').controller('fltplansController', ['$scope', 'growl', 
           if (attribute === 'comms'){
             $scope.airports[idx][attribute] = response.data.query.results.div.table.tbody.tr;
           }
-          console.log(response.data.query.results.div);
+          //console.log(response.data.query.results.div);
         },function(err){
           console.log("Error, could not get data for Airport:" + $scope.airports[idx].ident + "Attribute: " + attribute);
         });
@@ -265,7 +265,7 @@ angular.module('fltplans').controller('fltplansController', ['$scope', 'growl', 
         $http.get(thisURL)
         .then(function(response){
           $scope.airports[idx][attribute] = response.data.query.results.span;
-          console.log($scope.airports);
+          //console.log($scope.airports);
         },function(err){
           console.log("Error, could not get data for Airport:" + $scope.airports[idx].ident + "Attribute: " + attribute);
         });
@@ -337,7 +337,6 @@ angular.module('fltplans').controller('fltplansController', ['$scope', 'growl', 
 
       // Redirect after save
       fltplan.$save(function (response) {
-        alert("Favorite route saved!");
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
